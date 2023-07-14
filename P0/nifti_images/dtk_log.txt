@@ -1,0 +1,242 @@
+
+
+
+************ 6/21/23 11:55 AM ************ 
+
+Steps to do:
+
+1. diff_unpack "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/Im0001.dcm" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/tmp" -ot nii
+
+2. hardi_mat "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/matrices/gradient.txt" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/matrices/temp_mat.dat" -ref "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/Im0001.dcm"
+
+3. odf_recon "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/tmp" 61 181 "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi" -b0 5 -mat "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/matrices/temp_mat.dat" -p 3 -sn 1 -ot nii 
+
+4. odf_tracker "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" -at 45 -iy -szx -m "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi_dwi.nii" -rk2 -it nii
+
+5. spline_filter "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" 1 "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi.trk"
+
+6. trackvis "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi.trk"
+
+--------- Launching diff_unpack -----------------
+Querying dicom files... 0.0%
+Found 5525 single images in the series.
+
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+
+Writing output files... 
+--------- Launching hardi_mat -----------------
+Number of measurement points: 60
+Number of reconstruction points: 181
+
+--------- Launching odf_recon -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+Reading recon matrix...done
+Matrix file being used: /var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/matrices/temp_mat.dat
+
+Reconstructing data... 
+Writing b0 map...Done. 
+Writing dwi map...Done.
+Reconstruction completed successfully.
+Time taken: 00:00:14
+
+--------- Launching odf_tracker -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+
+Threshold for mask one: 240.089 2961
+
+Reading odf max data... 
+Time taken: 00:00:10
+
+--------- Launching spline_filter -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.10 0.10 0.10
+
+Spline filtering track data... 
+--------- Launching trackvis -----------------
+TrackVis successfully launched.
+
+
+Total time taken: 00:00:33
+
+
+
+************ 6/21/23 11:57 AM ************ 
+
+Steps to do:
+
+1. diff_unpack "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/Im0001.dcm" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/tmp" -ot nii
+
+2. dti_recon "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/tmp" "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi" -gm "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/matrices/gradient.txt" -b 1000 -b0 5 -p 3 -sn 1 -ot nii 
+
+3. dti_tracker "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" -at 45 -m "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi_dwi.nii" -rk2 -it nii
+
+4. spline_filter "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" 1 "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi.trk"
+
+5. trackvis "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi.trk"
+
+--------- Launching diff_unpack -----------------
+Querying dicom files... 0.0%
+--------- Launching dti_recon -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+Number of b0's: 5
+Number of gradient directions: 60
+
+Reading raw data... 1.5%
+b0 threshold used to mask background: 274.612 8130
+
+Writing output...
+Done.
+Reconstruction completed successfully.
+Time taken: 00:00:03
+
+--------- Launching dti_tracker -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+
+Threshold for mask one: 236.077 3003
+
+Reading tensor data...done.
+
+Tracking... 0.6%
+Number of tracks: 94642
+Time taken: 00:00:13
+
+--------- Launching spline_filter -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.10 0.10 0.10
+
+Spline filtering track data... 
+--------- Launching trackvis -----------------
+TrackVis successfully launched.
+
+
+Total time taken: 00:00:23
+
+
+
+************ 6/21/23 11:58 AM ************ 
+
+Steps to do:
+
+1. dti_tracker "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" -at 45 -ix -m "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi_dwi.nii" -rk2 -it nii
+
+2. spline_filter "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" 1 "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi.trk"
+
+3. trackvis "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi.trk"
+
+--------- Launching dti_tracker -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+
+Threshold for mask one: 236.077 3003
+
+Reading tensor data...done.
+
+Tracking... 0.6%
+Number of tracks: 94629
+Time taken: 00:00:14
+
+--------- Launching spline_filter -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.10 0.10 0.10
+
+Spline filtering track data... 
+--------- Launching trackvis -----------------
+TrackVis successfully launched.
+
+
+Total time taken: 00:00:15
+
+
+
+************ 6/21/23 12:02 PM ************ 
+
+Steps to do:
+
+1. dti_tracker "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" -at 45 -iy -m "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi_dwi.nii" -rk2 -it nii
+
+2. spline_filter "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" 1 "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi.trk"
+
+3. trackvis "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/hardi.trk"
+
+--------- Launching dti_tracker -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+
+Threshold for mask one: 236.077 3003
+
+Reading tensor data...done.
+
+Tracking... 0.6%
+Number of tracks: 94633
+Time taken: 00:00:14
+
+--------- Launching spline_filter -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.10 0.10 0.10
+
+Spline filtering track data... 
+--------- Launching trackvis -----------------
+TrackVis successfully launched.
+
+
+Total time taken: 00:00:15
+
+
+
+************ 6/21/23 12:12 PM ************ 
+
+Steps to do:
+
+1. diff_unpack "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/Im0001.dcm" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/tmp" -ot nii
+
+2. dti_recon "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/tmp" "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/DTI_inverty" -gm "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/matrices/gradient.txt" -b 1000 -b0 5 -p 3 -sn 1 -ot nii 
+
+3. dti_tracker "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/DTI_inverty" "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" -at 45 -iy -m "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/DTI_inverty_dwi.nii" -rk2 -it nii
+
+4. spline_filter "/var/folders/vv/y2vb7gq51cbdb51_jhbn0j1r0000gn/T/dtk_tmp/track_tmp.trk" 1 "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/DTI_inverty.trk"
+
+5. trackvis "/Users/christinecharvet/Desktop/mouse_DTI/P0_C57/7/pdata/1/dicom/DTI_inverty.trk"
+
+--------- Launching diff_unpack -----------------
+Querying dicom files... 0.2%
+--------- Launching dti_recon -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+Number of b0's: 5
+Number of gradient directions: 60
+
+Reading raw data... 4.6%
+b0 threshold used to mask background: 274.612 8130
+
+Writing output...
+Done.
+Reconstruction completed successfully.
+Time taken: 00:00:03
+
+--------- Launching dti_tracker -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.100 0.100 0.100
+
+Threshold for mask one: 236.077 3003
+
+Reading tensor data...done.
+
+Tracking... 0.6%
+Number of tracks: 94633
+Time taken: 00:00:15
+
+--------- Launching spline_filter -----------------
+Volume dimension: 158 70 85
+Voxel size: 0.10 0.10 0.10
+
+Spline filtering track data... 
+--------- Launching trackvis -----------------
+TrackVis successfully launched.
+
+
+Total time taken: 00:00:25

@@ -1,0 +1,12 @@
+**/*.dcm
+**/*.zip
+**/*.tar
+**/*.nii
+**/*.img.nii
+**/.DS_Store
+.DS_Store
+**/*.npy
+*.npy
+**/**/*.npy
+P0/P0_mouse_anatomical_region/cortex_structure/pallium/Atlas/pallium_original_atlas_roi.npy
+

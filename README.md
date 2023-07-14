@@ -1,2 +1,2 @@
 # mouse_brains
-Analysation of mouse brains
+Extracting fractional anisotropy maps from mouse brain scans
